@@ -1,0 +1,6 @@
+# Pinned to support legacy LangChain import paths used in src_simple_bot_Version2.py
+langchain==0.0.316
+openai==0.28.1
+chromadb==0.3.29
+tiktoken==0.4.0
+pydantic<2.0.0

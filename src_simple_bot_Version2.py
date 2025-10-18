@@ -15,11 +15,12 @@ import os
 from typing import List
 
 from langchain.embeddings import OpenAIEmbeddings
-from langchain.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
+from langchain.embeddings.fake import FakeEmbeddings
+from langchain.llms.fake import FakeListLLM
 
 def build_documents(texts: List[str]):
     docs = []
@@ -28,9 +29,10 @@ def build_documents(texts: List[str]):
     return docs
 
 def main():
+    use_fake = os.environ.get("USE_FAKE") in ("1", "true", "True", "yes")
     api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise RuntimeError("Set OPENAI_API_KEY in your environment")
+    if not use_fake and not api_key:
+        raise RuntimeError("Set OPENAI_API_KEY in your environment (or set USE_FAKE=1)")
 
     texts = [
         "Acme Inc. returns policy: customers can return items within 30 days of purchase with receipt.",
@@ -46,11 +48,23 @@ def main():
         split_docs.extend([{"page_content": p, "metadata": {}} for p in pages])
 
     # Embeddings + vector DB
-    embeddings = OpenAIEmbeddings(openai_api_key=api_key)
-    chroma_db = Chroma.from_documents([d["page_content"] for d in split_docs], embeddings)
+    if use_fake:
+        embeddings = FakeEmbeddings(size=1536)
+    else:
+        embeddings = OpenAIEmbeddings(openai_api_key=api_key)
+
+    chroma_db = Chroma.from_texts([d["page_content"] for d in split_docs], embedding=embeddings)
 
     # LLM
-    llm = OpenAI(openai_api_key=api_key, temperature=0.0)
+    if use_fake:
+        # Return deterministic answers for the three demo queries below
+        llm = FakeListLLM(responses=[
+            "Customers can return items within 30 days of purchase with receipt.",
+            "Support is available 9am-6pm Monday through Friday.",
+            "Product X costs $49 per seat per month; annual discounts available.",
+        ])
+    else:
+        llm = OpenAI(openai_api_key=api_key, temperature=0.0)
 
     # Retrieval QA chain
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=chroma_db.as_retriever())
