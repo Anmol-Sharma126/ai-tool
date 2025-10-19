@@ -1,0 +1,16 @@
+pyproject.toml
+readme.md
+src/ai_bots/__init__.py
+src/ai_bots/cli.py
+src/ai_bots/config.py
+src/ai_bots/logging_setup.py
+src/ai_bots.egg-info/PKG-INFO
+src/ai_bots.egg-info/SOURCES.txt
+src/ai_bots.egg-info/dependency_links.txt
+src/ai_bots.egg-info/entry_points.txt
+src/ai_bots.egg-info/requires.txt
+src/ai_bots.egg-info/top_level.txt
+src/ai_bots/api/server.py
+src/ai_bots/rag/pipeline.py
+tests/test_api.py
+tests/test_cli.py
