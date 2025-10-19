@@ -1,3 +1,4 @@
+langsmith==0.0.43
 # Pinned to support legacy LangChain import paths used in src_simple_bot_Version2.py
 langchain==0.0.316
 openai==0.28.1
