@@ -1,7 +1,7 @@
-langchain>=0.2.0
-langchain-openai>=0.2.0
-langchain-community>=0.2.0
-langchain-text-splitters>=0.2.0
-chromadb>=0.5.0
-openai>=1.43.0
-tiktoken>=0.7.0
+langsmith==0.0.43
+# Pinned to support legacy LangChain import paths used in src_simple_bot_Version2.py
+langchain==0.0.316
+openai==0.28.1
+chromadb==0.3.29
+tiktoken==0.4.0
+pydantic<2.0.0
