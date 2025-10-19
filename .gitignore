@@ -16,7 +16,6 @@ pnpm-debug.log*
 node_modules/
 .pnpm-store/
 .yarn/
-.vscode/.yarnrc.yml
 
 # Build outputs
 dist/
@@ -34,7 +33,6 @@ out/
 *.local
 
 # IDEs / editors
-.vscode/
 .idea/
 *.sublime-*
 *.code-workspace
@@ -87,3 +85,6 @@ secrets.*
 *.key
 
 *.bin
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
