@@ -1,0 +1,89 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+.Trashes
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+.pnpm-store/
+.yarn/
+.vscode/.yarnrc.yml
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.astro/
+
+# Runtime / env
+.env
+.env.*.local
+.local
+*.local
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-*
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Java / JVM
+target/
+*.class
+*.jar
+*.war
+
+# Go
+bin/
+vendor/
+
+# Rust
+target/
+
+# Terraform
+.terraform/
+
+# Docker / containers
+docker-compose.override.yml
+
+# Devcontainer
+.devcontainer/
+
+# Coverage / test output
+coverage/
+.nyc_output/
+*.lcov
+jest-results/
+
+# Temp / backup files
+*~
+*.swp
+*.tmp
+*.bak
+
+# Secrets
+secrets.*
+*.pem
+*.key
+
+*.bin
